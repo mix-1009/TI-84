@@ -1,0 +1,59 @@
+{1,1,1,1}→⌊SY
+{1,2,3,4}→⌊SX
+64→dim(⌊SX)
+64→dim(⌊SY)
+{4,1,0,1}→⌊SV
+"1st head index, 2nd tail index"
+"3d last key pressed, 4th mov delta"
+{1,0}→⌊SH
+{­4,4}→⌊SB
+"bonus point coordinates"
+ClrDraw
+For(I,1,⌊SV(1),1)
+Pt-On(⌊SX(I),⌊SY(I),2)
+End
+Pt-On(⌊SB(1),⌊SB(2),2,RED)
+While 1
+Lbl KK
+0→K
+While K=0
+If abs(⌊SX(⌊SV(1)))>10
+­⌊SX(⌊SV(1))→⌊SX(⌊SV(1))
+If abs(⌊SY(⌊SV(1)))>10
+­⌊SY(⌊SV(1))→⌊SY(⌊SV(1))
+If ⌊SX(⌊SV(1))=⌊SB(1) and ⌊SY(⌊SV(1))=⌊SB(2)
+Then
+randInt(­9,9,2)→⌊SB
+Pt-On(⌊SB(1),⌊SB(2),2,RED)
+⌊SV(1)+1→⌊SV(1)
+⌊SX(⌊SV(1)-1)→⌊SX(⌊SV(1))
+⌊SY(⌊SV(1)-1)→⌊SY(⌊SV(1))
+99→⌊SX(⌊SV(1)-1)
+End
+Pt-Off(⌊SX(⌊SV(2)),⌊SY(⌊SV(2)),2)
+⌊SX(⌊SV(1))→⌊SX(⌊SV(2))
+⌊SY(⌊SV(1))→⌊SY(⌊SV(2))
+⌊SV(2)+1→⌊SV(2)
+If ⌊SV(2)=⌊SV(1)
+1→⌊SV(2)
+⌊SX(⌊SV(1))+⌊SH(1)→⌊SX(⌊SV(1))
+⌊SY(⌊SV(1))+⌊SH(2)→⌊SY(⌊SV(1))
+Pt-On(⌊SX(⌊SV(1)),⌊SY(⌊SV(1)),2)
+Wait 0.1
+getKey→K
+End
+If K=⌊SV(3)
+Goto KK
+If K=82 and ⌊SV(3)≠84
+{­⌊SV(4),0}→⌊SH
+If K=84 and ⌊SV(3)≠82
+{⌊SV(4),0}→⌊SH
+If K=73 and ⌊SV(3)≠93
+{0,⌊SV(4)}→⌊SH
+If K=93 and ⌊SV(3)≠73
+{0,­⌊SV(4)}→⌊SH
+If K=105
+Return
+K→⌊SV(3)
+End
+Stop
